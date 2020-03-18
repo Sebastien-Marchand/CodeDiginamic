@@ -1,0 +1,12 @@
+1. A quoi sert l’exception : ExceptionDate et où est-elle utilisée ?
+
+	ExceptionDate est utilisé dans CtrlDate(String). Cette méthode est appelé dans SaisirAchat() et SaisirCommande()
+	Il permet de retourné une exception si le format de la date n'est pas respécté lors de la saisie
+	
+a. Donner moi un avis sur son utilisation et vos remarques
+
+2. A quoi sert la classe TestSaisie comment fonctionne-t-elle ?
+
+	TestSaisie permet de vérifié les saisie utilisiteur. Elle permet de vérifié si les donnée sont de même type et si elle ont déja été saisie auparavent
+
+a. Donner moi un avis sur son utilisation et vos remarques
