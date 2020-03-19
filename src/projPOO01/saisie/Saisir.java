@@ -20,12 +20,19 @@ import projPOO01.GestionPersonnes.Personne;
 import projPOO01.GestionPersonnes.Salarie;
 import projPOO01.Menu.Menus;
 
+import java.time.format.DateTimeFormatter;
+import java.time.Duration;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+
 /**
  * @author Sébastien MARCHAND
  * Permet la rétention d'information sous forme de liste
  * Permet la saisie d'informations par l'utilisateur
  *
  */
+@SuppressWarnings("unused")
 public class Saisir {
 	public static Patron patron = new Patron();
 	public static ArrayList<Personne> listclient = new ArrayList<Personne>();
@@ -33,6 +40,9 @@ public class Saisir {
 	public static ArrayList<Personne> listfournisseur = new ArrayList<Personne>();
 	public static ArrayList<Personne> listinterimaire = new ArrayList<Personne>();
 
+	static Instant instantdebut = Instant.now();										//représente le début de la saisie
+	static ZoneId currentZone = ZoneId.of("Europe/Paris");
+	
 	/**
 	 * Permet la saisie complète de toute les informations possible
 	 * Salarié
@@ -64,6 +74,8 @@ public class Saisir {
 	public static void SaisirPatron() {
 		boolean erreurcp;
 		boolean erreurns;
+		instantdebut = Instant.now();
+		
 		System.out.println("Saisir le nom du patron");
 		patron.setNom(Menus.sc.next());
 		System.out.println("Saisir le prenom du patron");
@@ -117,6 +129,7 @@ public class Saisir {
 				
 		}
 		if(Menus.choixmenu!=1) {
+			calculTempsTraitement();
 			Menus.Menu();
 		}
 		return;
@@ -590,9 +603,16 @@ public static void SaisirInterimaire(){
 				 b=false;
 			 }
 		}
-		
 		return cmd;
 		
 	}
 	
+
+	private static void calculTempsTraitement()
+	{
+		Instant instantfin = Instant.now();
+		System.out.println("Date de saisie début :" + ZonedDateTime.ofInstant(instantdebut, currentZone) );			//date début
+		System.out.println("Date de saisie fin :" + ZonedDateTime.ofInstant(instantfin, currentZone));			//date fin
+		System.out.println("Durée saisie :" + Duration.between(instantdebut, instantfin).getSeconds() + "s" );
+	}
 }
